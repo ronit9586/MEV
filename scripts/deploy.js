@@ -15,7 +15,7 @@ async function main() {
   const multiSwap = await MultiSwap.deploy();
   await multiSwap.deployed(); 
   console.log(`owner: ${owner.address}`);
-  await multiSwap.multiSwap("0x07865c6E87B9F70255377e024ace6630C1Eaa37F", "1", 2, {value: parseUnits("1", 9)})
+  await multiSwap.multiSwap("0x07865c6E87B9F70255377e024ace6630C1Eaa37F", "1", 4, {value: parseUnits("1", 9)})
   console.log("multiSwap Address: ", multiSwap.address) 
 }
 

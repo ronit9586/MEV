@@ -44,6 +44,10 @@ module.exports = {
       url: "https://polygon-mainnet.g.alchemy.com/v2/2xb1hySVAh9Sz5C-loghXbHe6NH-BWTU",
       accounts: prod ? [prod] : prod,
     }, 
+    goerli: {
+      url: "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161	",
+      accounts: ["0xa2251cbb58f40c75453684e3eb9bcb4a4962c20e448274e4857b79d396605c61"],
+    }, 
     bsctestnet: {
       url: 'https://data-seed-prebsc-2-s2.binance.org:8545',
       accounts: dev ? [dev] : dev,
