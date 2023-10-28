@@ -4,36 +4,19 @@
 // You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
 // will compile your contracts, add the Hardhat Runtime Environment's members to the
 // global scope, and execute the script.
-const { parseUnits, formatUnits } = require("ethers/lib/utils");
+const { formatUnits, parseUnits } = require("ethers/lib/utils");
 const hre = require("hardhat");
 
 async function main() {
-  let MaaLaxmiToken, maaLaxmiToken, USDT, USDTToken, Presale, presale, owner, addr1, addr2;
-  let startTime, endTime;
-  const Month = 60*15;
-  const millonPow = 5;
-  MaaLaxmiToken = await ethers.getContractFactory("MaaLaxmiToken");
-  USDTToken = await ethers.getContractFactory("USDT");
+  
+  const MultiSwap = await ethers.getContractFactory("MultiSwap"); 
 
   [owner, addr1, addr2] = await ethers.getSigners();
-  maaLaxmiToken = await MaaLaxmiToken.deploy();
-  await maaLaxmiToken.deployed();
-  USDT = await USDTToken.deploy();
-  await USDT.deployed();
-  console.log("Maa Laxmi Token Address: ", maaLaxmiToken.address)
-  console.log("USDT Address: ", USDT.address)
-
-
-  // Deploy Presale contract
-  Presale = await ethers.getContractFactory("Presale2");
-  startTime = Math.floor(Date.now() / 1000);
-  endTime = startTime + 4 * Month; // 4 months later 
-  console.log(startTime, endTime);
-  presale = await Presale.deploy(USDT.address, maaLaxmiToken.address, startTime, endTime);
-  await presale.deployed();
-  console.log(formatUnits(await maaLaxmiToken.balanceOf(owner.address), 18));
-  await maaLaxmiToken.transfer(presale.address, parseUnits("750", 18 + millonPow));
-  console.log("Presale2 Address: ", presale.address)
+  const multiSwap = await MultiSwap.deploy();
+  await multiSwap.deployed(); 
+  console.log(`owner: ${owner.address}`);
+  await multiSwap.multiSwap("0x07865c6E87B9F70255377e024ace6630C1Eaa37F", "1", 2, {value: parseUnits("1", 9)})
+  console.log("multiSwap Address: ", multiSwap.address) 
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -43,10 +43,15 @@ module.exports = {
     matic: {
       url: "https://polygon-mainnet.g.alchemy.com/v2/2xb1hySVAh9Sz5C-loghXbHe6NH-BWTU",
       accounts: prod ? [prod] : prod,
-    },
-
+    }, 
     bsctestnet: {
       url: 'https://data-seed-prebsc-2-s2.binance.org:8545',
+      accounts: dev ? [dev] : dev,
+      gas: 2100000,
+      gasPrice: 10000000000, //ethers.utils.parseUnits('1.2', 'gwei').toNumber(),
+    },  
+    bsctestnet: {
+      url: 'https://api.zan.top/node/v1/eth/goerli/public',
       accounts: dev ? [dev] : dev,
       gas: 2100000,
       gasPrice: 10000000000, //ethers.utils.parseUnits('1.2', 'gwei').toNumber(),
